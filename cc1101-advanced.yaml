@@ -1,29 +1,33 @@
 # https://github.com/dbuezas/esphome-cc1101
 esphome:
-  name: cc1101-example
-  friendly_name: CC1101 example
+  name: cc1101
+  friendly_name: CC1101
   includes:
     - cc1101.h
   libraries:
     - SPI
     - "SmartRC-CC1101-Driver-Lib"
 
-esp8266:
-  board: d1_mini
-
+#esp8266:
+# board: d1_mini
 #esp32:
-#  board: esp32dev
+# board: esp32dev
+esp32:
+  board: esp32-c3-devkitm-1  # Adjust according to your board
 
 wifi:
-  ssid: !secret wifi_name
-  password: !secret wifi_pass
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
   fast_connect: true
   power_save_mode: HIGH
 
 logger:
   level: VERBOSE
 api:
+
 ota:
+  platform: esphome
+  password: !secret ota_password
 
 web_server:
   port: 80
@@ -68,11 +72,11 @@ sensor:
       auto my_sensor = new CC1101(
 
         // esp8266 example
-        D5, // SCK
-        D6, // MISO
-        D7, // MOSI
-        D3, // CSN
-        D1, // GDO0
+        // D5, // SCK
+        // D6, // MISO
+        // D7, // MOSI
+        // D3, // CSN
+        // D1, // GDO0
 
         // esp32 example
         // 18, // SCK
@@ -80,6 +84,13 @@ sensor:
         // 23, // MOSI
         // 5, // CSN
         // 32, // GDO0
+
+        // esp32 c3
+        4, // SCK
+        5, // MISO
+        6, // MOSI
+        7, // CSN
+        1, // GDO0
 
         200, // bandwidth_in_khz
         433.92, // freq_in_mhz
@@ -90,17 +101,18 @@ sensor:
     sensors:
       id: transciver
       internal: true
+
 remote_transmitter:
   - id: transmitter
     pin:
-      number: D1 # This is GDO0
+      number: 1 #D1 # This is GDO0
       allow_other_uses: true
     carrier_duty_percent: 100%
 
 remote_receiver:
   - id: receiver
     pin:
-      number: D1 # This is GDO0
+      number: 1 #D1 # This is GDO0
       allow_other_uses: true
       # on the esp8266 use any of D1,D2,D5,D6,D7,Rx
       # Don't use D3,D4,D8,TX, boot often fails.

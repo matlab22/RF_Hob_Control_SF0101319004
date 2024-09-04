@@ -53,4 +53,4 @@ if __name__ == "__main__":
     #convert_to_esp_home_raw("b6492d924964b6", 300)
     
     # Example usage with binary input:
-    convert_to_esp_home_raw("1011011001001001001011011001001001001001011001001011001", 300)
+    convert_to_esp_home_raw("1011011001001001001011011001001001001001011001011001011", 300)
