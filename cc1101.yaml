@@ -100,63 +100,59 @@ remote_transmitter:
 
 button:
   - platform: template
-    name: Light
+    name: "Light Button"
+    command_topic: "home/button/light/set"
     on_press:
       - lambda: get_cc1101(transciver).beginTransmission();
       - remote_transmitter.transmit_raw:
-          # prettier-ignore
           code: [300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -600, 300, -600, 300, -600, 300, -300, 600]
           repeat:
             times: 10
             wait_time: 15.15ms
       - lambda: get_cc1101(transciver).endTransmission();
 
-
   - platform: template
-    name: Fan_OFF
+    name: "Fan Off Button"
+    command_topic: "home/button/fan_off/set"
     on_press:
       - lambda: get_cc1101(transciver).beginTransmission();
       - remote_transmitter.transmit_raw:
-          # prettier-ignore
           code: [300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -600, 300, -600, 300, -300, 600, -600, 300]
           repeat:
             times: 10
             wait_time: 15.15ms
       - lambda: get_cc1101(transciver).endTransmission();
 
-
   - platform: template
-    name: Plus
+    name: "Plus Button"
+    command_topic: "home/button/plus/set"
     on_press:
       - lambda: get_cc1101(transciver).beginTransmission();
       - remote_transmitter.transmit_raw:
-          # prettier-ignore
           code: [300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -600, 300, -600, 300, -300, 600, -300, 600]
           repeat:
             times: 10
             wait_time: 15.15ms
       - lambda: get_cc1101(transciver).endTransmission();
 
-
   - platform: template
-    name: Minus
+    name: "Minus Button"
+    command_topic: "home/button/minus/set"
     on_press:
       - lambda: get_cc1101(transciver).beginTransmission();
       - remote_transmitter.transmit_raw:
-          # prettier-ignore
           code: [300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -600, 300, -300, 600, -600, 300, -300, 600]
           repeat:
             times: 10
             wait_time: 15.15ms
       - lambda: get_cc1101(transciver).endTransmission();
 
-
   - platform: template
-    name: Timer
+    name: "Timer Button"
+    command_topic: "home/button/timer/set"
     on_press:
       - lambda: get_cc1101(transciver).beginTransmission();
       - remote_transmitter.transmit_raw:
-          # prettier-ignore
           code: [300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -300, 600, -600, 300, -600, 300, -600, 300, -600, 300, -600, 300, -300, 600, -600, 300, -300, 600, -300, 600, -600, 300]
           repeat:
             times: 10
